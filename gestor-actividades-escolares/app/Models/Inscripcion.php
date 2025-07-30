@@ -15,13 +15,20 @@ class Inscripcion extends Model
     // Campos que se pueden asignar masivamente
     protected $fillable = ['alumno_id', 'actividad_id'];
 
-    // Relación: una inscripción pertenece a un alumno
+    // Si no usas timestamps en esta tabla, puedes desactivarlos
+    // public $timestamps = false;
+
+    /**
+     * Una inscripción pertenece a un alumno.
+     */
     public function alumno()
     {
         return $this->belongsTo(Alumno::class);
     }
 
-    // Relación: una inscripción pertenece a una actividad
+    /**
+     * Una inscripción pertenece a una actividad.
+     */
     public function actividad()
     {
         return $this->belongsTo(Actividad::class);

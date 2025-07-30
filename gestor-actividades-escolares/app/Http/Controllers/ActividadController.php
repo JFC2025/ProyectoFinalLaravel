@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividad;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ActividadController extends Controller
 {
@@ -69,4 +70,14 @@ class ActividadController extends Controller
         $actividad->delete();
         return redirect()->route('actividades.index')->with('success', 'Actividad eliminada correctamente.');
     }
+
+    // Exportar PDF con lista de alumnos inscritos en la actividad
+public function exportarTodoPdf()
+{
+    $actividades = Actividad::with('alumnos')->get();
+
+    $pdf = Pdf::loadView('actividades.todos_pdf', compact('actividades'));
+
+    return $pdf->download('actividades_con_alumnos.pdf');
+}
 }

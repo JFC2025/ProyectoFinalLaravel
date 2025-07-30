@@ -17,9 +17,14 @@ class Alumno extends Model
         return $this->hasMany(Inscripcion::class);
     }
 
-    // Relación a través de inscripciones: actividades del alumno
+    // Relación actividades del alumno (muchos a muchos) a través de la tabla pivote 'inscripciones'
     public function actividades()
     {
-        return $this->belongsToMany(Actividad::class, 'inscripciones');
+        // Parámetros de belongsToMany:
+        // Modelo relacionado: Actividad::class
+        // Tabla pivote: 'inscripciones'
+        // FK en tabla pivote hacia este modelo (Alumno): 'alumno_id'
+        // FK en tabla pivote hacia modelo relacionado (Actividad): 'actividad_id'
+        return $this->belongsToMany(Actividad::class, 'inscripciones', 'alumno_id', 'actividad_id');
     }
 }
