@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use Illuminate\Http\Request;
+use App\Http\Requests\AlumnoRequest;
 
 class AlumnoController extends Controller
 {
@@ -18,17 +19,18 @@ class AlumnoController extends Controller
         return view('alumnos.create');
     }
 
-    public function store(Request $request)
+    public function store(AlumnoRequest $request)
     {
-        $request->validate([
-            'nombre_completo' => 'required|string|max:255',
-            'curso' => 'required|string|max:100',
-            'edad' => 'required|integer|min:1',
-        ]);
+        // $request->validate([
+        //     'nombre_completo' => 'required|string|max:255',
+        //     'curso' => 'required|string|max:100',
+        //     'edad' => 'required|integer|min:1',
+        // ]);
 
-        Alumno::create($request->all());
+        Alumno::create($request->validated());
 
-        return redirect()->route('alumnos.index')->with('success', 'Alumno creado correctamente.');
+        return redirect()->route('alumnos.index')
+                         ->with('success', 'Alumno creado correctamente.');
     }
 
     public function edit(Alumno $alumno)

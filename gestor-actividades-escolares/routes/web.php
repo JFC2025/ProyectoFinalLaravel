@@ -11,9 +11,13 @@ Route::resource('alumnos', AlumnoController::class);
 Route::resource('actividades', ActividadController::class)->parameters([
     'actividades' => 'actividad'  // parámetro personalizado para actividades
 ]);
+use App\Http\Controllers\HomeController;
 
-Route::get('/actividades/{actividad}/alumnos/pdf', [ActividadController::class, 'alumnosPdf'])
-    ->name('actividades.alumnos.pdf');
+// Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::get('/', function(){
+    return view('welcome');
+})->name('home');
 
 Route::get('/actividades/exportar/pdf', [ActividadController::class, 'exportarTodoPdf'])
     ->name('actividades.exportar.pdf');

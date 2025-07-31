@@ -10,6 +10,12 @@
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
+
+@error('nombre')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
+
+
             </ul>
         </div>
     @endif

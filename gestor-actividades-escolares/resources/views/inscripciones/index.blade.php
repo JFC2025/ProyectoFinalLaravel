@@ -32,7 +32,7 @@
                             <form action="{{ route('inscripciones.destroy', $inscripcion->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta inscripción?')">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('inscripciones.edit', $inscripcion->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                
                                 <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                             </form>
                         </td>

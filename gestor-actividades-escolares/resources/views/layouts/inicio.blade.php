@@ -15,34 +15,21 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Gestor Escolar</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('actividades.index') }}">Actividades</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('alumnos.index') }}">Alumnos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('inscripciones.index') }}">Inscripciones</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
 
    <!-- Contenido principal -->
     <main class="container">
       <h1 class="text-center mb-4">Actividades extra Escolares</h1>
-       
+    <main class="container text-center">
+    <img src="{{ asset('css/imagen/escuela.jpg') }}" alt="Logo Escuela" width="375" class="mb-3">
+   
 
 
       @yield('content')
     </main>
     
 
-    <!-- Pie de página -->
-    <footer class="bg-light text-center py-4 mt-5">
-        <p class="mb-0">&copy; {{ date('Y') }} Gestor de Actividades Escolares</p>
-    </footer>
+ 
 
     <!-- Barras animadas decorativas -->
     <div class="anim-container">
