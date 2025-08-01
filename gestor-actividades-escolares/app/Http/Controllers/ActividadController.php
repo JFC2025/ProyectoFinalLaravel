@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividad;
 use Illuminate\Http\Request;
+use \App\Http\Requests\ActividadRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class ActividadController extends Controller
@@ -29,16 +30,9 @@ class ActividadController extends Controller
     }
 
     // Guardar nueva actividad
-    public function store(Request $request)
+    public function store(ActividadRequest $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:100',
-            'descripcion' => 'required|string',
-            'dia_semana' => 'required|string',
-            'horario' => 'required|string',
-        ]);
-
-        Actividad::create($request->only(['nombre', 'descripcion', 'dia_semana', 'horario']));
+        Actividad::create($request->validated());
 
         return redirect()->route('actividades.index')->with('success', 'Actividad creada correctamente.');
     }
@@ -50,16 +44,16 @@ class ActividadController extends Controller
     }
 
     // Actualizar actividad existente
-    public function update(Request $request, Actividad $actividad)
+    public function update(ActividadRequest $request, Actividad $actividad)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:100',
-            'descripcion' => 'required|string',
-            'dia_semana' => 'required|string',
-            'horario' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'nombre' => 'required|string|max:100',
+        //     'descripcion' => 'required|string',
+        //     'dia_semana' => 'required|string',
+        //     'horario' => 'required|string',
+        // ]);
 
-        $actividad->update($request->only(['nombre', 'descripcion', 'dia_semana', 'horario']));
+        $actividad->update($request->all());
 
         return redirect()->route('actividades.index')->with('success', 'Actividad actualizada correctamente.');
     }

@@ -19,14 +19,8 @@ class AlumnoController extends Controller
         return view('alumnos.create');
     }
 
-    public function store(Request $request)
+    public function store(AlumnoRequest $request)
     {
-        $request->validate([
-            'nombre_completo' => 'required|string|max:255',
-            'curso' => 'required|string|max:100',
-            'edad' => 'required|integer|min:1',
-        ]);
-
         Alumno::create($request->all());
 
         return redirect()->route('alumnos.index')
@@ -38,14 +32,8 @@ class AlumnoController extends Controller
         return view('alumnos.edit', compact('alumno'));
     }
 
-    public function update(Request $request, Alumno $alumno)
+    public function update(AlumnoRequest $request, Alumno $alumno)
     {
-        $request->validate([
-            'nombre_completo' => 'required|string|max:255',
-            'curso' => 'required|string|max:100',
-            'edad' => 'required|integer|min:1',
-        ]);
-
         $alumno->update($request->all());
 
         return redirect()->route('alumnos.index')->with('success', 'Alumno actualizado correctamente.');

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
+            $table->string('nombre');
             $table->text('descripcion');
             $table->string('dia_semana');
             $table->string('horario');
